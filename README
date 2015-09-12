@@ -1,0 +1,39 @@
+
+ASSUMPTIONS:
+1. The program assumes 8x8 cell matrix.
+
+RUNNING INSTRUCTIONS
+1. Compile the 'snl.erl' file
+2. Create Players as follows
+	eg --> snl:initusers([player1,player2,player3]).
+        NOTE: the player name should be atom which means starting letter should be small case and not quotes
+3. Each Player takes his turn as follows
+	--> snl:play(<playername>)
+
+
+
+DESIGN
+1. Hardcoded ladder and snake coordinates are assumed. ensure the coordinates doesnt overlap
+2. Each player runs as a separete process with an associated state information which contains user name and current index.
+3. The process assumes gen_server behavior.
+4. The player takes his turn by calling interface method snl:play/1 where the arg is username of type atom.
+   In this method the dice outcome is assumed by a uniform random distribution function and passed to the gen_server process handler as index to move
+5. In the call back handling of the gen_server, the new index is inspected for both ladder and snake coordinates and next index is calculated
+6. The next index is stored in the state info.
+7. Whoever reaches final cell, exist the process 
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
